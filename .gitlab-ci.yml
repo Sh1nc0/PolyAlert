@@ -1,0 +1,13 @@
+image: node:latest
+
+stages:
+  - linting
+
+lint:
+  stage: linting
+  script:
+    - npm install
+    - npm lint
+  artifacts:
+    paths:
+      - node_modules
