@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "lint" : "gulp lint"
+    "lint" : "gulp lint",
+    "createDB": "sqlite3 PolyAlert.db < createDB.sql",
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
