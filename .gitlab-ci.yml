@@ -7,7 +7,7 @@ lint:
   stage: linting
   script:
     - npm install
-    - npm lint
+    - npm run lint
   artifacts:
     paths:
       - node_modules
