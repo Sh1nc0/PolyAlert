@@ -3,6 +3,7 @@
 let express = require('express');
 let app = express.Router();
 let user = require('./routes/user');
+let report = require('./routes/report');
 
 var bodyParser = require('body-parser');
 
@@ -14,5 +15,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use('/users', user);
+app.use('/reports', report);
 
 module.exports = app;
