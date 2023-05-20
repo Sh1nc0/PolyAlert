@@ -2,7 +2,7 @@
 
 let express = require('express');
 let app = express.Router();
-let user = require('./user');
+let user = require('./routes/user');
 
 var bodyParser = require('body-parser');
 

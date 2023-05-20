@@ -1,11 +1,11 @@
 'use strict';
 
 let express = require('express');
-let dbHelper = require('../dbHelper.js');
+let dbHelper = require('../../dbHelper.js');
 let app = express.Router();
 
 const {checkSchema, validationResult} = require('express-validator');
-const {updateUserSchema} = require('./schema/userSchema.js');
+const {updateUserSchema} = require('../schema/userSchema.js');
 
 app.get('/', (req, res, next) => {
     dbHelper.users.all().then(
