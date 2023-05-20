@@ -70,3 +70,18 @@ module.exports.reports = {
     byReportedId: id => all(`select * from Report where reportedID = "${id}"`),
     create: report => run(`insert into Report (issueID, reporterID, reportedID, reason) values ("${report.issueID}", "${report.reporterID}", "${report.reportedID}", "${report.reason}")`),
 };
+
+module.exports.issues = {
+    all: () => all('select * from Issue'),
+    byId: id => get(`select * from Issue where id = "${id}"`),
+    byUserId: id => all(`select * from Issue where userID = "${id}"`),
+    byTechnicianId: id => all(`select * from Issue where technicianID = "${id}"`),
+    create: issue => run(`insert into Issue (userID, title, description, location, type, criticity, anonymous) values ("${issue.userID}", "${issue.title}", "${issue.description}", "${issue.location}", "${issue.type}", "${issue.criticity}", "${issue.anonymous}")`),
+    handle: (id, technicianID) => run(`update Issue set technicianID = "${technicianID}" where id = "${id}"`),
+    close: id => run(`update Issue set closedAT = datetime('now') where id = "${id}"`),
+};
+
+module.exports.messages = {
+    byIssueId: id => all(`select * from Message where issueID = "${id}"`),
+    create: message => run(`insert into Message (authorID, issueID, content) values ("${message.authorID}", "${message.issueID}", "${message.content}")`),
+};
