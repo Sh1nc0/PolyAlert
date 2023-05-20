@@ -84,4 +84,5 @@ CREATE TABLE Report (
 -- Add some data
 --
 
-INSERT INTO User (id, lastname, firstname, email, password, type) VALUES ('11350cb5-3e81-4396-aeca-8b3ef6d31a7a', 'admin', 'admin', 'admin@admin.fr', 'admin', 3), ('38f7054e-f6f0-11ed-b67e-0242ac120002', 'etudiant', 'etudiant', 'etudiant@etudiant.fr', 'etudiant', 2), ('5c4eaa1a-f6f0-11ed-b67e-0242ac120002', 'prof', 'prof', 'prof@prof.fr', 'prof', 1)
+INSERT INTO User (id, lastname, firstname, email, password, type) VALUES ('11350cb5-3e81-4396-aeca-8b3ef6d31a7a', 'admin', 'admin', 'admin@admin.fr', 'admin', 3), ('38f7054e-f6f0-11ed-b67e-0242ac120002', 'etudiant', 'etudiant', 'etudiant@etudiant.fr', 'etudiant', 2), ('5c4eaa1a-f6f0-11ed-b67e-0242ac120002', 'prof', 'prof', 'prof@prof.fr', 'prof', 1);
+INSERT INTO Report (issueID, reporterID, reportedID, reason) VALUES (0, '38f7054e-f6f0-11ed-b67e-0242ac120002', '11350cb5-3e81-4396-aeca-8b3ef6d31a7a', 'Raison 1'), (1, '5c4eaa1a-f6f0-11ed-b67e-0242ac120002', '11350cb5-3e81-4396-aeca-8b3ef6d31a7a', 'Raison 2');
