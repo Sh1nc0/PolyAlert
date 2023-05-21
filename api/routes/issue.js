@@ -74,16 +74,19 @@ app.post('/:issue_id/handle', checkSchema(handleIssueSchema), (req, res, next) =
     const errors = validationResult(req);
     if (!errors.isEmpty())
         res.status(400).json(errors.array());
-    else {
-        dbHelper.issues.handle(req.params.issue_id, req.body.technicianID).then(
-            () => {
-                res.send();
-            },
-            err => {
-                next(err);
-            },
-        );
-    }
+
+    dbHelper.issues.byId(req.params.issue_id).then(
+        issue => {
+            if (!issue)
+                return res.status(400).json({msg: 'Issue does not exist'});
+
+            return dbHelper.issues.handle(req.params.issue_id, req.body.technicianID);
+        },
+    ).then(() => {
+        res.send();
+    }).catch(err => {
+        next(err);
+    });
 });
 
 app.post('/:issue_id/close', (req, res, next) => {
@@ -110,25 +113,28 @@ app.get('/:issue_id/messages', (req, res, next) => {
 });
 
 app.post('/:issue_id/messages', checkSchema(createMessageSchema), (req, res, next) => {
-    const errors = validationResult(req);
+    let errors = validationResult(req);
     if (!errors.isEmpty())
         res.status(400).json(errors.array());
-    else {
-        let message = {
-            issueID: req.params.issue_id,
-            authorID: req.body.authorID,
-            content: req.body.content,
-        };
 
-        dbHelper.messages.create(message).then(
-            () => {
-                res.send();
-            },
-            err => {
-                next(err);
-            },
-        );
-    }
+    dbHelper.issues.byId(req.params.issue_id).then(
+        issue => {
+            if (!issue)
+                return res.status(400).json({msg: 'Issue does not exist'});
+
+            let message = {
+                issueID: req.params.issue_id,
+                authorID: req.body.authorID,
+                content: req.body.content,
+            };
+
+            return dbHelper.messages.create(message);
+        },
+    ).then(() => {
+        res.send();
+    }).catch(err => {
+        next(err);
+    });
 });
 
 
