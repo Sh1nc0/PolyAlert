@@ -23,10 +23,10 @@ page('/', async function () {
         let table = document.getElementById('recent-problems');
         let rows = table.rows;
 
-        for (var i = 0; i < rows.length; i+=1) {
+        for (let i = 0; i < rows.length; i += 1 ) {
             rows[i].addEventListener('click', (event) => {
                 let id = event.currentTarget.getAttribute('id');
-                page('/issue?id='+id);
+                page(`/issue?id=${id}`);
             });
         }
 
@@ -54,6 +54,12 @@ page('report', async function () {
 page('issue', async function (context) {
     let id = context.querystring.split('=')[1];
     let response = await fetch(`/api/issues?issueID=${id}`);
+
+    //error handling
+    if (response.status !== 200) {
+        console.log(`Erreur HTTP: ${response.status}`);
+        return;
+    }
     let issue = await response.json();
 
     issue.created = new Date(issue.created).toLocaleString();

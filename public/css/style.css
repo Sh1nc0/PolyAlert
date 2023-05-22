@@ -63,10 +63,11 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-
+    flex-direction: column;
     /* Take all the height of the window */
     height: 80vh;
 }
+
 
 article {
     width: 50%;
@@ -117,5 +118,23 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     font-weight: bold;
     color: #27374D;
+}
+
+#recent-problems tr:hover {
     cursor: pointer;
+}
+
+#report-user {
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px 10px;
+    background-color: #526D82;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+#report-user:hover {
+    background-color: #27374D;
 }
