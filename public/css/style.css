@@ -1,0 +1,119 @@
+/*
+### COLORS ###
+#27374D
+#526D82
+#9DB2BF
+#DDE6ED
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #EEEEEE;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-bar {
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #27374D;
+    color: #fff;
+    padding: 0 20px;
+}
+
+.nav-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+}
+
+.nav-title:hover {
+    color: #526D82;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+}
+
+.nav-item {
+    border: #526D82 1px solid;
+    padding: 10px;
+    margin: 0 5px;
+}
+
+.nav-item:hover {
+    background-color: #526D82;
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Take all the height of the window */
+    height: 80vh;
+}
+
+article {
+    width: 50%;
+    padding: 10px 0;
+    border-radius: 10px;
+    border: #27374D 2px solid;
+}
+
+.article-title {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 10px;
+    color: #27374D;
+}
+
+table, td {
+    border-collapse: collapse;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+td {
+    padding: 5px;
+    text-align: center;
+}
+
+thead {
+    background-color: #27374D;
+    color: #fff;
+}
+
+thead th {
+    padding: 5px;
+}
+
+tbody tr:nth-child(odd) {
+    background-color:#d3d3d3;
+}
+
+tbody tr:nth-child(even) {
+    background-color:#EEEEEE;
+}
+
+tbody tr:hover {
+    font-weight: bold;
+    color: #27374D;
+}

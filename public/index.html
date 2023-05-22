@@ -5,14 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PolyAlert</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="public/css/style.css">
 
     <!-- Polyfills pour le support de fetch dans les vieux navigateurs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.0.5/es6-promise.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.1/fetch.min.js" defer></script>
 
-    <script src="js/main.js" defer></script>
+    <!-- Mustache ! -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js" async></script>
+    <!-- Page.js pour le routage -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/page.js/1.11.4/page.min.js" defer></script>
+
+    <script src="public/js/configMustache.js" defer></script>
+    <script src="public/js/main.js" defer></script>
 </head>
 <body>
+<!-- Error 404 style ascii art -->
+<pre>
+    ,,,,,
+   (o   o)
+    /. .\
+   (_____)
+     : :
+    ##O##
+  ,,,: :,,,
+ _)\ : : /(____
+{  \     /  ___}
+ \/)     ((/
+  (_______)
+    :   :
+    :   :
+   / \ / \
+   """ """
+</pre>
+Oops, la page demandée n'existe pas !
 </body>
 </html>
