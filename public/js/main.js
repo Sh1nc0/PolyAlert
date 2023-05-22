@@ -20,6 +20,15 @@ page('/', async function () {
         await renderTemplate(templates('public/templates/main.mustache'), context);
 
         let report_button = document.getElementById('report');
+        let table = document.getElementById('recent-problems');
+        let rows = table.rows;
+
+        for (var i = 0; i < rows.length; i+=1) {
+            rows[i].addEventListener('click', (event) => {
+                let id = event.currentTarget.getAttribute('id');
+                page('/issue?id='+id);
+            });
+        }
 
         report_button.addEventListener('click', () => {
             page('report');
@@ -33,13 +42,33 @@ page('report', async function () {
     async function renderReportPage(context) {
         await renderTemplate(templates('public/templates/report.mustache'), context);
 
-        let report_button = document.getElementById('homepage');
+        let homepage_button = document.getElementById('homepage');
 
-        report_button.addEventListener('click', () => {
+        homepage_button.addEventListener('click', () => {
             page('/');
         });
     }
 
+});
+
+page('issue', async function (context) {
+    let id = context.querystring.split('=')[1];
+    let response = await fetch(`/api/issues?issueID=${id}`);
+    let issue = await response.json();
+
+    issue.created = new Date(issue.created).toLocaleString();
+
+    renderIssuePage({title: issue.title, issue: {...issue, status: issue.technicianID ? 'Pris en charge' : 'En cours'}});
+
+    async function renderIssuePage(context) {
+        await renderTemplate(templates('public/templates/issue.mustache'), context);
+
+        let homepage_button = document.getElementById('homepage');
+
+        homepage_button.addEventListener('click', () => {
+            page('/');
+        });
+    }
 });
 
 
