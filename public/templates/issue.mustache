@@ -1,7 +1,7 @@
 <body>
     {{>header}}
     <main>
-        <article>
+        <article id="issue-informations">
                 <h1 class="article-title">Informations</h1>
                 <table>
                     <tbody id="Informations">
@@ -36,5 +36,13 @@
                 </table>
             </article>
             <button id="report-user">Signaler utilisateur</button>
+            <article id="popup" class="popup">
+                <h1 class="article-title">Signaler utilisateur</h1>
+                <form id="report-user-form">
+                    <label for="report-reason">Raison</label>
+                    <input type="text" id="report-reason" name="report-reason" placeholder="saisir raison..." required>
+                    <input type="submit">
+                </form>
+            </article>
     </main>
 </body>
