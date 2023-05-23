@@ -1,6 +1,6 @@
 'use strict';
 
-let context = {};
+let context = {logged: false};
 // Route pour la page principale (index.html)
 page('/', async function () {
 
@@ -33,6 +33,15 @@ page('/', async function () {
         report_button.addEventListener('click', () => {
             page('report');
         });
+    }
+});
+
+page('login', async function () {
+
+    renderLoginPage(context);
+
+    async function renderLoginPage(context) {
+        await renderTemplate(templates('public/templates/login.mustache'), context);
     }
 });
 
