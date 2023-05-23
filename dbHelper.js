@@ -48,6 +48,7 @@ const run = sql => new Promise(function (resolve, reject) {
 module.exports.users = {
     all: () => all('select * from User'),
     byId: id => get(`select * from User where id = "${id}"`),
+    byEmail: email => get(`select * from User where email = "${email}"`),
     update: (id, user) => {
         let sql = 'update User set ';
         let keys = Object.keys(user);

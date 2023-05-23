@@ -5,9 +5,12 @@ let api = require('./api/api');
 
 const app = express();
 
-app.use('/public', express.static('public'));
-app.use('/api', api);
+const auth = require('./auth/auth');
+const passport = auth(app);
 
+app.use('/api', api(passport));
+
+app.use('/public', express.static('public'));
 app.use(function (req, res) {
     res.sendFile('public/index.html', {'root': __dirname});
 });
