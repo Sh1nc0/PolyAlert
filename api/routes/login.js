@@ -20,7 +20,7 @@ module.exports = function (passport) {
             req.login(user, (err) => {
                 if (err)
                     return next(err);
-                return res.send({success: true, message: 'authentification succeeded'});
+                return res.send({success: true, message: 'authentification succeeded', user: {id: user.id, email: user.email, role: user.type}});
             });
         })(req, res, next);
     });

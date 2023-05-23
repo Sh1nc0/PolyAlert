@@ -40,13 +40,13 @@ passport.use(new LocalStrategy(
 
 // Stocke les données de l'utilisation dans le cookie de session
 passport.serializeUser(function (user, cb) {
-    console.debug('serializeUser ', JSON.stringify(user));
+    //console.debug('serializeUser ', JSON.stringify(user));
     cb(null, user.id);
 });
 
 // Récupère les données de l'utilisateur depuis le cookie de session
 passport.deserializeUser(function (id, cb) {
-    console.debug('deserializeUser ' + id);
+    //console.debug('deserializeUser ' + id);
     dbHelper.users.byId(id)
         .then(
             user => cb(null, user),
@@ -61,7 +61,7 @@ passport.deserializeUser(function (id, cb) {
 module.exports = function (app) {
     app.use(require('cookie-parser')());
     app.use(require('body-parser').urlencoded({extended: true}));
-    app.use(require('express-session')({secret: 'keyboard cat', resave: false, saveUninitialized: false}));
+    app.use(require('express-session')({secret: 'keyboard cat', resave: false, cookie: {secure: false}, saveUninitialized: false}));
 
     // Initialize Passport and restore authentication state, if any, from the
     // session.
