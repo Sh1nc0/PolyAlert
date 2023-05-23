@@ -1,0 +1,35 @@
+<body>
+    {{>header}}
+    <main>
+        <article>
+            <h1 class="article-title">Formulaire de signalement</h1>
+            <form id="report-issue-form">
+                <label for="issue-title">Nom du problème</label>
+                <input type="text" id="issue-title" name="issue-title" placeholder="saisir nom..." required>
+                <label for="issue-type">Nature</label>
+                <select id="issue-type" name="issue-type" required>
+                    <option value="0">Matériel</option>
+                    <option value="1">Informatique</option>
+                    <option value="2">Autre</option>
+                </select>
+                <label for="issue-location">Emplacement</label>
+                <input type="text" id="issue-location" name="issue-location" placeholder="saisir positiion..." required>
+                <label for="issue-criticity">Criticité</label>
+                <div class="radio-button">
+                    <input type="radio" id="issue-criticity" name="issue-criticity" value="1" required>1</input>
+                    <input type="radio" id="issue-criticity" name="issue-criticity" value="2" required>2</input>
+                    <input type="radio" id="issue-criticity" name="issue-criticity" value="3" required>3</input>
+                    <input type="radio" id="issue-criticity" name="issue-criticity" value="4" required>4</input>
+                    <input type="radio" id="issue-criticity" name="issue-criticity" value="5" required>5</input>
+                </div>
+                <label for="issue-description">Description</label>
+                <textarea id="issue-description" name="issue-description" placeholder="description du problème..." required></textarea>
+                <div id="issue-anonymous">
+                    <label for="anonymous">Anonyme</label>
+                    <input type="checkbox" id="anonymous" name="anonymous">
+                </div>
+                <input type="submit">
+            </form>
+        </article>
+    </main>
+</body>
