@@ -111,10 +111,10 @@ page('report', async function () {
 
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
+            console.log(context);
             let formData = new FormData(form);
             let jsonData = {
-                userID: '38f7054e-f6f0-11ed-b67e-0242ac120002',
-                technicianID: '11350cb5-3e81-4396-aeca-8b3ef6d31a7a',
+                userID: context.user.id,
                 title: formData.get('issue-title'),
                 description: formData.get('issue-description'),
                 location: formData.get('issue-location'),
@@ -191,6 +191,8 @@ page('issue', async function (url) {
 
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
+
+            console.log(context);
             let formData = new FormData(form);
             let jsonData = {
                 issueID: context.issue.id,
