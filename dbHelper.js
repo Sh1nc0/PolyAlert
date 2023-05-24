@@ -46,9 +46,9 @@ const run = sql => new Promise(function (resolve, reject) {
 });
 
 module.exports.users = {
-    all: () => all('select * from User'),
-    byId: id => get(`select * from User where id = "${id}"`),
-    byEmail: email => get(`select * from User where email = "${email}"`),
+    all: () => all('select select User.*, UserType.value AS role from User LEFT JOIN UserType on User.type = UserType.id'),
+    byId: id => get(`select User.*, UserType.value AS role from User LEFT JOIN UserType on User.type = UserType.id where User.id = "${id}"`),
+    byEmail: email => get(`select User.*, UserType.value AS role from User LEFT JOIN UserType on User.type = UserType.id where User.email = "${email}"`),
     update: (id, user) => {
         let sql = 'update User set ';
         let keys = Object.keys(user);
