@@ -15,12 +15,10 @@ page('/', async function () {
                 problemes.push({id: issue.id, title: issue.title, status: issue.technicianID ? 'Pris en charge' : 'En cours'});
             });
         });
-
         renderMainPage({...context, title: 'Accueil', problemes: problemes});
     }
 
     async function renderMainPage(context) {
-
         await renderTemplate(templates('private/main.mustache'), context);
 
         let report_button = document.getElementById('report');
@@ -102,7 +100,7 @@ page('report', async function () {
     if (!context.logged)
         page('/login');
     else
-        renderReportPage({title: 'Signaler un problème'});
+        renderReportPage({...context, title: 'Signaler un problème'});
 
     async function renderReportPage(context) {
         await renderTemplate(templates('private/report-issue.mustache'), context);
@@ -165,8 +163,6 @@ page('issue', async function (url) {
     async function renderIssuePage(context) {
         await renderTemplate(templates('private/issue.mustache'), context);
 
-        console.log(context);
-
         let homepage_button = document.getElementById('homepage');
         let report_user_button = document.getElementById('report-user');
         let issue_information_view = document.getElementById('issue-informations');
@@ -196,9 +192,9 @@ page('issue', async function (url) {
             event.preventDefault();
             let formData = new FormData(form);
             let jsonData = {
-                issueID: id,
-                reporterID: '38f7054e-f6f0-11ed-b67e-0242ac120002',
-                reportedID: '11350cb5-3e81-4396-aeca-8b3ef6d31a7a',
+                issueID: context.issue.id,
+                reporterID: context.user.id,
+                reportedID: context.issue.userID,
                 reason: formData.get('report-reason'),
             };
 
