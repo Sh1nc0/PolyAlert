@@ -13,10 +13,6 @@ module.exports.createIssueSchema = {
         notEmpty: true,
         isString: true,
     },
-    technicianID: {
-        notEmpty: true,
-        isString: true,
-    },
     title: {
         notEmpty: true,
         isString: true,

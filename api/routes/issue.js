@@ -50,7 +50,6 @@ app.post('/', checkSchema(createIssueSchema), (req, res, next) => {
     else {
         let issue = {
             userID: req.body.userID,
-            technicianID: req.body.technicianID,
             title: req.body.title,
             description: req.body.description,
             location: req.body.location,
