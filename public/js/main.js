@@ -22,6 +22,7 @@ page('/', async function () {
         await renderTemplate(templates('private/main.mustache'), context);
 
         let report_button = document.getElementById('report');
+        let manage_issues_button = document.getElementById('manage-issues');
         let table = document.getElementById('recent-problems');
         let rows = table.rows;
 
@@ -34,6 +35,13 @@ page('/', async function () {
 
         report_button.addEventListener('click', () => {
             page('report');
+        });
+
+        manage_issues_button.addEventListener('click', () => {
+            if (context.user.role === 'Technicien')
+                page('manage-issues');
+            else
+                page('my-issues');
         });
     }
 });
@@ -78,6 +86,7 @@ page('login', async function () {
                         context.logged = true;
                         setCookie('logged', true, 1);
                         context.user = result.user;
+                        context.button = result.user.role === 'Technicien' ? 'Gérer signalements' : 'Mes signalements';
                         page('/');
                     }
                     else {
@@ -220,6 +229,81 @@ page('issue', async function (url) {
             page('/');
         });
     }
+});
+
+page('my-issues', async function () {
+
+    if (!context.logged)
+        page('/login');
+    else {
+        let response = await fetch(`/api/issues?userID=${context.user.id}`);
+
+        //error handling
+        if (response.status !== 200) {
+            console.log(`Erreur HTTP: ${response.status}`);
+            return;
+        }
+        let issues = await response.json();
+
+        issues.forEach(issue => {
+            issue.created = new Date(issue.created).toLocaleString();
+            issue.status = issue.technicianID ? 'Pris en charge' : 'En cours';
+        });
+
+        renderMyIssuesPage({...context, title: 'Mes signalements', issues: issues});
+    }
+
+    async function renderMyIssuesPage(context) {
+        console.log(context);
+        await renderTemplate(templates('private/my-issues.mustache'), context);
+
+        let homepage_button = document.getElementById('homepage');
+
+        homepage_button.addEventListener('click', () => {
+            page('/');
+        });
+    }
+});
+
+page('manage-issues', async function () {
+        if (!context.logged)
+            page('/login');
+        else {
+            let response = await fetch(`/api/issues`);
+
+            //error handling
+            if (response.status !== 200) {
+                console.log(`Erreur HTTP: ${response.status}`);
+                return;
+            }
+            let issues = await response.json();
+
+            issues.forEach(issue => {
+                issue.created = new Date(issue.created).toLocaleString();
+                issue.status = issue.technicianID ? 'Pris en charge' : 'En cours';
+                issue.resolved = issue.closed ? 'Résolu' : 'Non résolu';
+                if (issue.technicianID) {
+                    fetch(`/api/users/${issue.technicianID}`)
+                        .then(response => response.json())
+                        .then(user => {
+                            issue.assigned = `${user.firstname} ${user.lastname}`;
+                        });
+                }
+            });
+
+
+            renderManageIssuesPage({...context, title: 'Gérer signalements', issues: issues});
+        }
+
+        async function renderManageIssuesPage(context) {
+            await renderTemplate(templates('admin/manage-issues.mustache'), context);
+
+            let homepage_button = document.getElementById('homepage');
+
+            homepage_button.addEventListener('click', () => {
+                page('/');
+            });
+        }
 });
 
 page.base('/'); // psi votre projet n'est pas hébergé à la racine de votre serveur, ajuster son url de base ici !

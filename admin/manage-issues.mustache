@@ -1,0 +1,26 @@
+<body>
+    {{>header}}
+    <main>
+        <article>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Résolu</th>
+                        <th>Nom</th>
+                        <th>Date</th>
+                        <th>Attribution</th>
+                    </tr>
+                </thead>
+                <tbody id="recent-problems">
+                    {{#issues}}
+                    <tr id={{id}}>
+                        <td><input type="checkbox" id="resolved" name="resolved" disabled {{#resolved}}checked{{/resolved}}></td>
+                        <td>{{title}}</td>
+                        <td>{{created}}</td>
+                        <td>{{assigned}}</td>
+                    </tr>
+                    {{/issues}}
+                </tbody>
+        </article>
+    </main>
+</body>
