@@ -90,9 +90,12 @@ article {
 }
 
 table {
-    table-layout: fixed;
-    border-collapse: collapse;
     width: 100%;
+    border-spacing: 0;
+}
+
+table tbody, table thead tr {
+    display: block;
 }
 
 td {
@@ -107,6 +110,16 @@ thead {
 
 thead th {
     padding: 5px;
+}
+
+table tbody {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+table thead th, table tbody td {
+    width: 500px;
 }
 
 tbody tr:nth-child(odd) {
