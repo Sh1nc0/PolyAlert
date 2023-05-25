@@ -1,6 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/git,macos,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=git,macos,node
 
+sessions
 
 *.db
 ### Git ###
