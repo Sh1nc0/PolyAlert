@@ -281,7 +281,7 @@ page('manage-issues', async function () {
             issues.forEach(issue => {
                 issue.created = new Date(issue.created).toLocaleString();
                 issue.status = issue.technicianID ? 'Pris en charge' : 'En cours';
-                issue.resolved = issue.closed ? 'Résolu' : 'Non résolu';
+                issue.checked = issue.closed != null ? 1 : 0;
                 if (issue.technicianID) {
                     fetch(`/api/users/${issue.technicianID}`)
                         .then(response => response.json())

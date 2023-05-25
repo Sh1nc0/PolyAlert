@@ -89,12 +89,9 @@ article {
     color: #27374D;
 }
 
-table, td {
-    border-collapse: collapse;
-}
-
 table {
     table-layout: fixed;
+    border-collapse: collapse;
     width: 100%;
 }
 
@@ -189,7 +186,7 @@ form select {
     font-size: 1rem;
 }
 
-form input[type="checkbox"], form input[type="radio"]{
+input[type="checkbox"], input[type="radio"]{
     padding: 5px;
     border-radius: 5px;
     border: #27374D 1px solid;
@@ -197,11 +194,11 @@ form input[type="checkbox"], form input[type="radio"]{
     font-size: 1rem;
 }
 
-form input[type="radio"]{
+input[type="radio"]{
     margin: 0 5px;
 }
 
-form input[type="checkbox"]:checked, form input[type="radio"]:checked {
+input[type="checkbox"]:checked, input[type="radio"]:checked {
     background-color: #526D82;
 }
 
