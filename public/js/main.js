@@ -1,6 +1,6 @@
 'use strict';
 
-let context = {logged: false};
+let context = {logged: getCookie('logged')};
 
 // Route pour la page principale (index.html)
 page('/', async function () {
@@ -76,6 +76,7 @@ page('login', async function () {
                     if (result.success) {
                         // on passe à la page d'administration
                         context.logged = true;
+                        setCookie('logged', true, 1);
                         context.user = result.user;
                         page('/');
                     }

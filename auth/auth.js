@@ -9,6 +9,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const dbHelper = require('../dbHelper.js');
 
+var session = require('express-session');
+const SQLiteStore = require('connect-sqlite3')(session);
+
 // LocalStrategy = stockage des identifiants et mots de passe
 // des utilisateurs en local dans notre base de données
 passport.use(new LocalStrategy(
@@ -61,7 +64,7 @@ passport.deserializeUser(function (id, cb) {
 module.exports = function (app) {
     app.use(require('cookie-parser')());
     app.use(require('body-parser').urlencoded({extended: true}));
-    app.use(require('express-session')({secret: 'keyboard cat', resave: false, cookie: {secure: false}, saveUninitialized: false}));
+    app.use(require('express-session')({store: new SQLiteStore, secret: 'keyboard cat', resave: false, cookie: {secure: false}, saveUninitialized: false}));
 
     // Initialize Passport and restore authentication state, if any, from the
     // session.
