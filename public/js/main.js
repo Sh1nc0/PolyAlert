@@ -1,6 +1,6 @@
 'use strict';
 
-let context = {logged: getCookie('logged')};
+let context = {logged: getCookie('logged'), user: JSON.parse(getCookie('user'))};
 
 // Route pour la page principale (index.html)
 page('/', async function () {
@@ -85,6 +85,7 @@ page('login', async function () {
                         // on passe à la page d'administration
                         context.logged = true;
                         setCookie('logged', true, 1);
+                        setCookie('user', JSON.stringify(result.user));
                         context.user = result.user;
                         context.button = result.user.role === 'Technicien' ? 'Gérer signalements' : 'Mes signalements';
                         page('/');
