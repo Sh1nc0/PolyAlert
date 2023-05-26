@@ -1,4 +1,4 @@
-'use strict';
+
 
 let express = require('express');
 let user = require('./routes/user');

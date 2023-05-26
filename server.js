@@ -1,4 +1,4 @@
-'use strict';
+
 
 const express = require('express');
 let api = require('./api/api');
@@ -12,7 +12,7 @@ app.use('/api', api(passport));
 
 app.use('/public', express.static('public'));
 app.use('/private', require('connect-ensure-login').ensureLoggedIn(), express.static('private'));
-app.use('/admin', require('connect-ensure-login').ensureLoggedIn(), function(req, res, next){
+app.use('/admin', require('connect-ensure-login').ensureLoggedIn(), function (req, res, next) {
     if (req.user.role === 'Technicien')
         next();
     else

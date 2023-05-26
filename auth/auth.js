@@ -1,5 +1,5 @@
 /* eslint-env node */
-'use strict';
+
 
 // Ce module permet de gérer l'authentification avec la librairie passportjs
 // Il dépend également du module dbHelper puisque les informations de nos

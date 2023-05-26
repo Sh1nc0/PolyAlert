@@ -1,4 +1,4 @@
-'use strict';
+
 
 const {query} = require('express-validator');
 
