@@ -1,6 +1,3 @@
-'use strict';
-
-
 /*eslint-disable no-unused-vars*/
 function setCookie(name, value, hours) {
     let expires = '';

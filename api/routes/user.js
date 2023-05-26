@@ -1,4 +1,4 @@
-'use strict';
+
 
 let express = require('express');
 let dbHelper = require('../../dbHelper.js');

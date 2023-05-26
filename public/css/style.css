@@ -89,13 +89,13 @@ article {
     color: #27374D;
 }
 
-table, td {
-    border-collapse: collapse;
+table {
+    width: 100%;
+    border-spacing: 0;
 }
 
-table {
-    table-layout: fixed;
-    width: 100%;
+table tbody, table thead tr {
+    display: block;
 }
 
 td {
@@ -110,6 +110,16 @@ thead {
 
 thead th {
     padding: 5px;
+}
+
+table tbody {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+table thead th, table tbody td {
+    width: 500px;
 }
 
 tbody tr:nth-child(odd) {
@@ -189,7 +199,7 @@ form select {
     font-size: 1rem;
 }
 
-form input[type="checkbox"], form input[type="radio"]{
+input[type="checkbox"], input[type="radio"]{
     padding: 5px;
     border-radius: 5px;
     border: #27374D 1px solid;
@@ -197,11 +207,11 @@ form input[type="checkbox"], form input[type="radio"]{
     font-size: 1rem;
 }
 
-form input[type="radio"]{
+input[type="radio"]{
     margin: 0 5px;
 }
 
-form input[type="checkbox"]:checked, form input[type="radio"]:checked {
+input[type="checkbox"]:checked, input[type="radio"]:checked {
     background-color: #526D82;
 }
 

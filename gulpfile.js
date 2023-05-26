@@ -1,4 +1,4 @@
-'use strict';
+
 
 /*
  * Lancement dans un terminal dédié (laisser le tourner indéfiniment) :
@@ -14,7 +14,7 @@ var gulp = require('gulp'),
     eslint = require('gulp-eslint');
 
 var inputPaths = {
-    JavaScript: ['./*.js', './**/*.js', '!./node_modules/**'],
+    JavaScript: ['./*.js', './**/*.js', '!./node_modules/**', '!./public/js/routes.js'],
 };
 
 gulp.task('lint', function () {
@@ -28,6 +28,9 @@ gulp.task('lint', function () {
             ],
             parserOptions: {   // https://eslint.org/docs/user-guide/configuring
                 ecmaVersion: 9,
+                sourceType: 'module',
+                allowImportExportEverywhere: true,
+                ecmaVersion: 2018,
                 // ecmaFeatures: {impliedStrict: true,},
             },
             // documentation des règles eslint :

@@ -1,4 +1,4 @@
-'use strict';
+
 
 // fonction utilitaire permettant de faire du
 // lazy loading (chargement à la demande) des templates

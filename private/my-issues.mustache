@@ -1,0 +1,25 @@
+<body>
+    {{>header}}
+    <main>
+        <article>
+            <h1 class="article-title">Problèmes récents</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="recent-problems">
+                    {{#issues}}
+                    <tr id={{id}}>
+                        <td>{{title}}</td>
+                        <td>{{status}}</td>
+                        <td>{{created}}</td>
+                    </tr>
+                    {{/issues}}
+                </tbody>
+        </article>
+    </main>
+</body>

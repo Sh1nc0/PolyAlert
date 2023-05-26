@@ -1,4 +1,4 @@
-'use strict';
+
 
 const {query} = require('express-validator');
 
@@ -10,10 +10,6 @@ module.exports.getIssueSchema =  [
 
 module.exports.createIssueSchema = {
     userID: {
-        notEmpty: true,
-        isString: true,
-    },
-    technicianID: {
         notEmpty: true,
         isString: true,
     },
