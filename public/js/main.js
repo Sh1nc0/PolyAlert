@@ -116,7 +116,6 @@ page('report', async function () {
     async function renderReportPage(context) {
         await renderTemplate(templates('private/report-issue.mustache'), context);
 
-        let homepage_button = document.getElementById('homepage');
         let form = document.getElementById('report-issue-form');
 
         form.addEventListener('submit', async (event) => {
@@ -144,9 +143,7 @@ page('report', async function () {
             page('/');
         });
 
-        homepage_button.addEventListener('click', () => {
-            page('/');
-        });
+
     }
 
 });
@@ -174,7 +171,6 @@ page('issue', async function (url) {
     async function renderIssuePage(context) {
         await renderTemplate(templates('private/issue.mustache'), context);
 
-        let homepage_button = document.getElementById('homepage');
         let report_user_button = document.getElementById('report-user');
         let issue_information_view = document.getElementById('issue-informations');
         let popup = document.getElementById('popup');
@@ -225,10 +221,6 @@ page('issue', async function (url) {
         report_issue_button.addEventListener('click', () => {
             page('report');
         });
-
-        homepage_button.addEventListener('click', () => {
-            page('/');
-        });
     }
 });
 
@@ -257,12 +249,6 @@ page('my-issues', async function () {
     async function renderMyIssuesPage(context) {
         console.log(context);
         await renderTemplate(templates('private/my-issues.mustache'), context);
-
-        let homepage_button = document.getElementById('homepage');
-
-        homepage_button.addEventListener('click', () => {
-            page('/');
-        });
     }
 });
 
@@ -298,12 +284,6 @@ page('manage-issues', async function () {
 
         async function renderManageIssuesPage(context) {
             await renderTemplate(templates('admin/manage-issues.mustache'), context);
-
-            let homepage_button = document.getElementById('homepage');
-
-            homepage_button.addEventListener('click', () => {
-                page('/');
-            });
         }
 });
 
