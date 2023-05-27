@@ -87,6 +87,7 @@ article {
     font-weight: bold;
     padding-bottom: 10px;
     color: #27374D;
+    border-bottom: #27374D 1px solid;
 }
 
 table {
@@ -229,4 +230,83 @@ form #issue-anonymous {
     visibility: hidden;
     background-color: #EEEEEE;
     opacity: 0;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    /* Take all the height of the window */
+    height: 80vh;
+    width: 90%;
+}
+
+section article {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.messaging {
+    margin: 0;
+    padding-top: 10px;
+    display: grid;
+    gap: 10px;
+    max-height: 315px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.message {
+    border-radius: 5px;
+    padding: 4px;
+    max-width: 50%;
+    color: #27374D;
+}
+
+.message-container {
+    height: 325px;
+}
+
+.message-right {
+    margin-right: 20px;
+    place-self: end;
+    background-color: #d3d3d3;
+}
+
+.message-left {
+    margin-left: 20px;
+    place-self: start;
+    border: #d3d3d3 1px solid;
+}
+
+/*Align input and button*/
+
+.message-form {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    border-top: #27374D 1px solid;
+    margin-top: 5px;
+}
+
+.message-form input[type="text"] {
+    margin: 10px 5px;
+    width: 80%;
+    padding: 0 5px;
+    border-radius: 5px;
+    border: #27374D 1px solid;
+    background-color: #EEEEEE;
+    font-size: 1rem;
+}
+
+.hightlight {
+    color: #27374D;
+    font-weight: bold;
+}
+
+#problems {
+    height: 418px;
 }

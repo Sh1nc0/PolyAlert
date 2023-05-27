@@ -1,25 +1,39 @@
 <body>
     {{>header}}
     <main>
-        <article>
-            <h1 class="article-title">Problèmes récents</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody id="recent-problems">
-                    {{#issues}}
-                    <tr id={{id}}>
-                        <td>{{title}}</td>
-                        <td>{{status}}</td>
-                        <td>{{created}}</td>
-                    </tr>
-                    {{/issues}}
-                </tbody>
-        </article>
+        <section>
+            <article id="problems">
+                <h1 class="article-title">Problèmes récents</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-problems">
+                        {{#issues}}
+                        <tr id={{id}}>
+                            <td>{{title}}</td>
+                            <td>{{status}}</td>
+                            <td>{{created}}</td>
+                        </tr>
+                        {{/issues}}
+                    </tbody>
+                </table>
+            </article>
+            <article class="chat">
+                <h1 class="article-title">Messagerie</h1>
+                <div class="message-container">
+                    <div class="messaging" id="messaging">
+                    </div>
+                </div>
+                <div class="message-form">
+                    <input type="text" name="message" id="message" placeholder="Message">
+                    <button id="send-message">Envoyer</button>
+                </div>
+            </article>
+        </section>
     </main>
 </body>

@@ -1,4 +1,5 @@
 /* eslint-env node */
+
 const sqlite3 = require('sqlite3').verbose();
 
 const db = new sqlite3.Database('./PolyAlert.db', sqlite3.OPEN_READWRITE, function (err) {
@@ -42,6 +43,8 @@ const run = sql => new Promise(function (resolve, reject) {
         }
     });
 });
+
+module.exports.db = db;
 
 module.exports.users = {
     all: () => all('select select User.*, UserType.value AS role from User LEFT JOIN UserType on User.type = UserType.id'),

@@ -1,9 +1,32 @@
 
 
 const express = require('express');
+
 let api = require('./api/api');
+let dbHelper = require('./dbHelper.js');
+
 
 const app = express();
+const server = require('http').createServer(app);
+
+const io = require('socket.io')(server);
+
+// Real time message listen on database
+dbHelper.db.on('trace', (sql) => {
+    if (sql.includes('insert into Message')) {
+        const pattern = /\("([^"]+)", "([^"]+)", "([^"]+)"\)/g;
+        const matches = sql.matchAll(pattern);
+        for (const match of matches) {
+            let message = {
+                issueID: match[2],
+                content: match[3],
+                userID: match[1],
+            };
+            io.emit(message.issueID, message);
+        }
+    }
+});
+
 
 const auth = require('./auth/auth');
 const passport = auth(app);
@@ -24,4 +47,4 @@ app.use(function (req, res) {
     res.sendFile('public/index.html', {'root': __dirname});
 });
 
-app.listen(8080);
+server.listen(8080);

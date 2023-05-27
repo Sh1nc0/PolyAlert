@@ -25,6 +25,7 @@
     "gulp-watch": "^5.0.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "socket.io": "^4.6.1",
     "sqlite3": "^5.1.6"
   }
 }
