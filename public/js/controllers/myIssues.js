@@ -26,6 +26,7 @@ export async function postload(context) {
     let selectedRow = rows[0].id || null;
     loadMessages();
     highlightRow(selectedRow);
+    io().on(selectedRow, onMessage);
 
     //Scroll to bottom
     const callback = function (mutationsList) {
@@ -39,11 +40,8 @@ export async function postload(context) {
     messaging.scrollTop = messaging.scrollHeight;
 
     for (let i = 0; i < rows.length; i += 1 ) {
-        rows[i].addEventListener('click', function () {
-            selectedRow = rows[i].id;
-            highlightRow(selectedRow);
-            clearMessages();
-            loadMessages();
+        rows[i].addEventListener('click', () => {
+            onRowSelected(i);
         });
     }
 
@@ -67,6 +65,25 @@ export async function postload(context) {
         messaging.appendChild(message_row);
         input_message.value = '';
     });
+
+    async function onRowSelected(i) {
+        selectedRow = rows[i].id;
+        highlightRow(selectedRow);
+        clearMessages();
+        loadMessages();
+
+        io().disconnect();
+        io().on(selectedRow, onMessage);
+    }
+
+    async function onMessage(message) {
+        if (message.issueID === selectedRow && message.userID !== context.user.id) {
+            let message_row = document.createElement('div');
+            message_row.className = 'message message-left';
+            message_row.innerHTML = `${message.content}`;
+            messaging.appendChild(message_row);
+        }
+    }
 
     async function highlightRow(selectedRow) {
         for (let i = 0; i < rows.length; i += 1) {
