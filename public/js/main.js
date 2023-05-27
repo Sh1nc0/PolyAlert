@@ -18,7 +18,7 @@ routes.forEach(route => {
             await renderTemplate(templates(route.template), {...context, ...subcontext, title: route.title});
 
             if (typeof route.postload !== 'undefined')
-                await route.postload(context);
+                await route.postload( {...context, ...subcontext});
         }
     });
 });

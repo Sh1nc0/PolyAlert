@@ -202,6 +202,7 @@ form select {
 
 input[type="checkbox"], input[type="radio"]{
     padding: 5px;
+    margin: 0 5px;
     border-radius: 5px;
     border: #27374D 1px solid;
     background: transparent;
@@ -232,7 +233,7 @@ form #issue-anonymous {
     opacity: 0;
 }
 
-section {
+.section-myissues {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -243,7 +244,7 @@ section {
     width: 90%;
 }
 
-section article {
+.section-myissues article {
     flex: 1;
     margin: 0 10px;
 }
@@ -309,4 +310,35 @@ section article {
 
 #problems {
     height: 418px;
+}
+
+.section-filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-filter article {
+    margin: 10px 0;
+}
+
+.form-filter {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+}
+
+.form-filter * {
+    margin-left: 10px;
+}
+
+.form-filter label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #27374D;
 }

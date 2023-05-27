@@ -1,26 +1,51 @@
 <body>
     {{>header}}
     <main>
-        <article>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Résolu</th>
-                        <th>Nom</th>
-                        <th>Date</th>
-                        <th>Attribution</th>
-                    </tr>
-                </thead>
-                <tbody id="recent-problems">
-                    {{#issues}}
-                    <tr id={{id}}>
-                        <td><input type="checkbox" id="resolved" name="resolved" disabled checked={{checked}}></td>
-                        <td>{{title}}</td>
-                        <td>{{created}}</td>
-                        <td>{{assigned}}</td>
-                    </tr>
-                    {{/issues}}
-                </tbody>
-        </article>
+        <section class="section-filter">
+            <article>
+                <h1 class="article-title">Filtre</h1>
+                <form class="form-filter" id="form-filter">
+                    <input type="checkbox" id="issue-closed" name="issue-closed"><label>Filtrer résolu</label></input>
+                    <div>
+                        <label>Type de signalement:</label>
+                        <select id="issue-type" name="issue-type" required>
+                            <option value="0">Matériel</option>
+                            <option value="1">Informatique</option>
+                            <option value="2">Autre</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Attribution:</label>
+                        <select id="issue-asigned" name="issue-asigned" required>
+                            <option value="0">Tous</option>
+                            <option value="1">Moi</option>
+                            <option value="2">Non attribué</option>
+                        </select>
+                    </div>
+                </form>
+            </article>
+            <article>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Résolu</th>
+                            <th>Nom</th>
+                            <th>Date</th>
+                            <th>Attribution</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-problems">
+                        {{#issues}}
+                        <tr id={{id}}>
+                            <td><input type="checkbox" id="resolved" name="resolved" disabled></td>
+                            <td>{{title}}</td>
+                            <td>{{created}}</td>
+                            <td>{{assigned}}</td>
+                        </tr>
+                        {{/issues}}
+                    </tbody>
+                </table>
+            </article>
+        </section>
     </main>
 </body>
