@@ -1,7 +1,12 @@
 
 let coockie = getCookie('user');
-let context = {logged: coockie !== null, user: JSON.parse(coockie), button: {title: JSON.parse(coockie).role === 'Technicien' ? 'Gérer signalements' : 'Mes signalements', path: JSON.parse(coockie).role === 'Technicien' ? '/manage-issues' : '/my-issues'}};
+let context = {logged: false};
 
+if (coockie){
+    context.logged = true;
+    context.user = JSON.parse(coockie);
+    context.button = {title: JSON.parse(coockie).role === 'Technicien' ? 'Gérer signalements' : 'Mes signalements', path: JSON.parse(coockie).role === 'Technicien' ? '/manage-issues' : '/my-issues'}
+}
 import routes from './routes.js';
 
 routes.forEach(route => {
