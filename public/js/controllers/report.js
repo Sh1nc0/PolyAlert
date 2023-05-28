@@ -3,7 +3,6 @@ export async function postload(context) {
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
-        console.log(context);
         let formData = new FormData(form);
         let jsonData = {
             userID: context.user.id,
@@ -12,8 +11,10 @@ export async function postload(context) {
             location: formData.get('issue-location'),
             type: parseInt(formData.get('issue-type')),
             criticity: parseInt(formData.get('issue-criticity')),
-            anonymous: formData.get('issue-anonymous') === 'on' ? true : false,
+            anonymous:  document.getElementById('anonymous').checked,
         };
+
+        console.log(jsonData);
 
         await fetch('/api/issues', {
             method: 'POST',
