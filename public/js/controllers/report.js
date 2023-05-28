@@ -11,7 +11,7 @@ export async function postload(context) {
             location: formData.get('issue-location'),
             type: parseInt(formData.get('issue-type')),
             criticity: parseInt(formData.get('issue-criticity')),
-            anonymous:  document.getElementById('anonymous').checked,
+            anonymous: document.getElementById('anonymous').checked,
         };
 
         console.log(jsonData);
