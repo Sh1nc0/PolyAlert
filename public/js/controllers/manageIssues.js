@@ -82,6 +82,11 @@ export async function postload(context) {
 
     async function initTable() {
         context.issues.forEach((issue) => {
+
+            document.getElementById(issue.id).addEventListener('click', () => {
+                page(`/manage-issue?id=${issue.id}`);
+            });
+
             let target = document.getElementById(issue.id).getElementsByTagName('input')[0];
             if (issue.closedAt !== null)
                 target.setAttribute('checked', true);
@@ -119,6 +124,10 @@ export async function postload(context) {
         row.appendChild(name);
         row.appendChild(date);
         row.appendChild(asign);
+
+        row.addEventListener('click', () => {
+            page(`/manage-issue?id=${data.id}`);
+        });
 
         table.appendChild(row);
     }

@@ -114,7 +114,7 @@ thead th {
 }
 
 table tbody {
-    max-height: 200px;
+    max-height: 400px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -233,7 +233,7 @@ form #issue-anonymous {
     opacity: 0;
 }
 
-.section-myissues {
+.section-inline {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -241,10 +241,10 @@ form #issue-anonymous {
     flex-direction: row;
     /* Take all the height of the window */
     height: 80vh;
-    width: 90%;
+    max-width: 90%;
 }
 
-.section-myissues article {
+.section-inline article {
     flex: 1;
     margin: 0 10px;
 }
@@ -341,4 +341,15 @@ form #issue-anonymous {
     font-size: 1rem;
     font-weight: bold;
     color: #27374D;
+}
+
+.red {
+    background-color: #e8234a;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
