@@ -126,7 +126,7 @@ export async function postload(context) {
                     'Content-Type': 'application/json',
                 },
             });
-            page(`/manage-issues`);
+            page('/manage-issues');
         }
     }
 
