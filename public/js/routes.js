@@ -69,6 +69,19 @@ const routes = [
             return await controllers.postload(context);
         },
     },
+    {
+        path: 'manage-issue',
+        template: 'admin/view-issue.mustache',
+        title: 'Gérer les signalements',
+        preload : async function (context) {
+            const controllers = await import('./controllers/manageIssue.js');
+            return await controllers.preload(context);
+        },
+        postload : async function (context) {
+            const controllers = await import('./controllers/manageIssue.js');
+            return await controllers.postload(context);
+        },
+    },
 ]
 
 export default routes;

@@ -36,7 +36,7 @@ export async function postload(context) {
                     setCookie('user', JSON.stringify(result.user));
                     context.user = result.user;
                     context.button = {title: result.user.role === 'Technicien' ? 'Gérer signalements' : 'Mes signalements', path: result.user.role === 'Technicien' ? '/manage-issues' : '/my-issues'};
-                    page('/');
+                    window.location.href = '/';
                 }
                 else {
                     // Sinon on réaffiche la page avec quelques infos pour expliquer ce qui n'a pas marché

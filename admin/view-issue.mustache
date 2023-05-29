@@ -1,0 +1,49 @@
+<body>
+    {{>header}}
+    <main>
+        <section class="section-inline">
+            <article>
+                <h1 class="article-title">Informations</h1>
+                <table>
+                    <tbody id="Informations">
+                        <tr>
+                            <td>Date</td>
+                            <td>{{issue.created}}</td>
+                        </tr>
+                        <tr>
+                            <td>Nom du signalement</td>
+                            <td>{{issue.title}}</td>
+                        </tr>
+                        <tr>
+                            <td>Nature</td>
+                            <td>{{issue.type}}</td>
+                        </tr>
+                        <tr>
+                            <td>Emplacement</td>
+                            <td>{{issue.location}}</td>
+                        </tr>
+                        <tr>
+                            <td>Utilisateur</td>
+                            <td>{{issue.user.firstname}} {{issue.user.lastname}}</td>
+                        </tr>
+                        <tr>
+                            <td>Criticité</td>
+                            <td>{{issue.criticity}}</td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>{{issue.description}}</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>{{issue.status}}</td>
+                    </tbody>
+                </table>
+                <div id="button-container" class="button-container">
+                    <!-- <button id="handle-issue">Prendre en charge</button>
+                    <button id="delete-issue" class="red">Supprimer</button> -->
+                </div>
+            </article>
+        </section>
+    </main>
+</body>
