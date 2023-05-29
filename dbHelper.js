@@ -47,7 +47,7 @@ const run = sql => new Promise(function (resolve, reject) {
 module.exports.db = db;
 
 module.exports.users = {
-    all: () => all('select select User.*, UserType.value AS role from User LEFT JOIN UserType on User.type = UserType.id'),
+    all: () => all('select User.*, UserType.value AS role from User LEFT JOIN UserType on User.type = UserType.id'),
     byId: id => get(`select User.*, UserType.value AS role from User LEFT JOIN UserType on User.type = UserType.id where User.id = "${id}"`),
     byEmail: email => get(`select User.*, UserType.value AS role from User LEFT JOIN UserType on User.type = UserType.id where User.email = "${email}"`),
     update: (id, user) => {
