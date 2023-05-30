@@ -5,9 +5,10 @@
   "main": "server.js",
   "scripts": {
     "lint": "gulp lint",
-    "createDB": "sqlite3 PolyAlert.db < createDB.sql",
-    "start": "nodemon server.js",
-    "test": "jest --confi=./tests/jest.config.js --detectOpenHandles"
+    "createDB": "sqlite3 data/PolyAlert.db < data/createDB.sql",
+    "start": "NODE_ENV=PROD node server.js",
+    "dev": "NODE_ENV=DEV sqlite3 data/PolyAlert.db < data/createDB.sql && nodemon server.js",
+    "test": "NODE_ENV=TEST sqlite3 data/Test.db < data/createDB.sql && jest --confi=./tests/jest.config.js --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",

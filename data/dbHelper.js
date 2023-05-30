@@ -2,7 +2,9 @@
 
 const sqlite3 = require('sqlite3').verbose();
 
-const db = new sqlite3.Database('./data/PolyAlert.db', sqlite3.OPEN_READWRITE, function (err) {
+const dbPath = process.env.NODE_ENV === 'test' ? 'Test.db' : 'PolyAlert.db';
+
+const db = new sqlite3.Database(`./data/${dbPath}`, sqlite3.OPEN_READWRITE, function (err) {
     if (err) {
         console.error(err + '\n' + 'run "npm run createDB" to create a database file');
         require('process').exit(-1);
