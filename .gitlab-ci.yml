@@ -2,12 +2,21 @@ image: node:latest
 
 stages:
   - linting
+  - tests
 
 lint:
   stage: linting
   script:
     - npm install
     - npm run lint
+  artifacts:
+    paths:
+      - node_modules
+
+API:
+  stage: tests
+  script:
+    - npm run test
   artifacts:
     paths:
       - node_modules
