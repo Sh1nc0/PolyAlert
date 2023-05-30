@@ -2,7 +2,9 @@
 
 const sqlite3 = require('sqlite3').verbose();
 
-const db = new sqlite3.Database('./PolyAlert.db', sqlite3.OPEN_READWRITE, function (err) {
+const dbPath = process.env.NODE_ENV === 'test' ? 'Test.db' : 'PolyAlert.db';
+
+const db = new sqlite3.Database(`./data/${dbPath}`, sqlite3.OPEN_READWRITE, function (err) {
     if (err) {
         console.error(err + '\n' + 'run "npm run createDB" to create a database file');
         require('process').exit(-1);
@@ -47,7 +49,7 @@ const run = sql => new Promise(function (resolve, reject) {
 module.exports.db = db;
 
 module.exports.users = {
-    all: () => all('select select User.*, UserType.value AS role from User LEFT JOIN UserType on User.type = UserType.id'),
+    all: () => all('select User.*, UserType.value AS role from User LEFT JOIN UserType on User.type = UserType.id'),
     byId: id => get(`select User.*, UserType.value AS role from User LEFT JOIN UserType on User.type = UserType.id where User.id = "${id}"`),
     byEmail: email => get(`select User.*, UserType.value AS role from User LEFT JOIN UserType on User.type = UserType.id where User.email = "${email}"`),
     update: (id, user) => {
@@ -67,7 +69,7 @@ module.exports.users = {
 
 module.exports.reports = {
     all: () => all('select * from Report'),
-    byIssueId: id => get(`select * from Report where issueID = "${id}"`),
+    byIssueId: id => all(`select * from Report where issueID = "${id}"`),
     byReporterId: id => all(`select * from Report where reporterID = "${id}"`),
     byReportedId: id => all(`select * from Report where reportedID = "${id}"`),
     create: report => run(`insert into Report (issueID, reporterID, reportedID, reason) values ("${report.issueID}", "${report.reporterID}", "${report.reportedID}", "${report.reason}")`),

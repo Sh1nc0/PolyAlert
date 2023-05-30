@@ -1,7 +1,7 @@
 
 
 let express = require('express');
-let dbHelper = require('../../dbHelper.js');
+let dbHelper = require('../../data/dbHelper.js');
 let app = express.Router();
 
 const {checkSchema, validationResult} = require('express-validator');
@@ -49,7 +49,7 @@ app.patch('/:user_id', checkSchema(updateUserSchema), (req, res, next) => {
 
         dbHelper.users.update(req.params.user_id, user).then(
             () => {
-                res.send();
+                res.sendStatus(204);
             },
             err => {
                 next(err);

@@ -7,7 +7,7 @@
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const dbHelper = require('../dbHelper.js');
+const dbHelper = require('../data/dbHelper.js');
 
 var session = require('express-session');
 const SQLiteStore = require('connect-sqlite3')(session);

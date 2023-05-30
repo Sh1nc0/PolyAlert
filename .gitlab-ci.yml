@@ -2,12 +2,24 @@ image: node:latest
 
 stages:
   - linting
+  - tests
+
+before_script:
+  - apt-get update && apt-get install -y sqlite3
 
 lint:
   stage: linting
   script:
     - npm install
     - npm run lint
+  artifacts:
+    paths:
+      - node_modules
+
+API:
+  stage: tests
+  script:
+    - npm run test
   artifacts:
     paths:
       - node_modules

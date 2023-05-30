@@ -1,7 +1,7 @@
 
 
 let express = require('express');
-let dbHelper = require('../../dbHelper.js');
+let dbHelper = require('../../data/dbHelper.js');
 let app = express.Router();
 
 const {checkSchema, validationResult} = require('express-validator');
@@ -60,7 +60,7 @@ app.post('/', checkSchema(createIssueSchema), (req, res, next) => {
 
         dbHelper.issues.create(issue).then(
             () => {
-                res.send();
+                res.sendStatus(201);
             },
             err => {
                 next(err);
@@ -82,33 +82,43 @@ app.post('/:issue_id/handle', checkSchema(handleIssueSchema), (req, res, next) =
             return dbHelper.issues.handle(req.params.issue_id, req.body.technicianID);
         },
     ).then(() => {
-        res.send();
+        res.sendStatus(204);
     }).catch(err => {
         next(err);
     });
 });
 
 app.post('/:issue_id/close', (req, res, next) => {
-    dbHelper.issues.close(req.params.issue_id).then(
-        () => {
-            res.send();
+    dbHelper.issues.byId(req.params.issue_id).then(
+        issue => {
+            if (!issue)
+                return res.status(400).json({msg: 'Issue does not exist'});
+
+            return dbHelper.issues.close(req.params.issue_id);
         },
-        err => {
-            next(err);
-        },
-    );
+    ).then(() => {
+        res.sendStatus(204);
+    }).catch(err => {
+        next(err);
+    });
 });
 
 app.get('/:issue_id/messages', (req, res, next) => {
-    dbHelper.messages.byIssueId(req.params.issue_id).then(
+    dbHelper.issues.byId(req.params.issue_id).then(
+        issue => {
+            if (!issue)
+                return res.status(400).json({msg: 'Issue does not exist'});
+
+            return dbHelper.messages.byIssueId(req.params.issue_id);
+        },
+    ).then(
         messages => {
             res.set('Content-type', 'application/json');
             res.send(JSON.stringify(messages));
         },
-        err => {
-            next(err);
-        },
-    );
+    ).catch(err => {
+        next(err);
+    });
 });
 
 app.post('/:issue_id/messages', checkSchema(createMessageSchema), (req, res, next) => {
@@ -120,6 +130,8 @@ app.post('/:issue_id/messages', checkSchema(createMessageSchema), (req, res, nex
         issue => {
             if (!issue)
                 return res.status(400).json({msg: 'Issue does not exist'});
+            if (issue.technicianID !== req.body.authorID && issue.userID !== req.body.authorID)
+                return res.status(400).json({msg: 'You are not allowed to post a message on this issue'});
 
             let message = {
                 issueID: req.params.issue_id,
@@ -130,7 +142,7 @@ app.post('/:issue_id/messages', checkSchema(createMessageSchema), (req, res, nex
             return dbHelper.messages.create(message);
         },
     ).then(() => {
-        res.send();
+        res.sendStatus(201);
     }).catch(err => {
         next(err);
     });
