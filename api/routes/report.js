@@ -47,23 +47,36 @@ app.post('/', checkSchema(createReportSchema), (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
         res.status(400).json(errors.array());
-    else {
-        let report = {
-            issueID: req.body.issueID,
-            reporterID: req.body.reporterID,
-            reportedID: req.body.reportedID,
-            reason: req.body.reason,
-        };
 
-        dbHelper.reports.create(report).then(
-            () => {
-                res.send();
-            },
-            err => {
-                next(err);
-            },
-        );
-    }
+    dbHelper.issues.byId(req.body.issueID).then(
+        issue => {
+            if (!issue)
+                res.status(400).json({message: 'Issue does not exist'});
+            if (issue.userID !== req.body.reportedID)
+                res.status(400).json({message: 'You can only report user that created the issue'});
+
+            dbHelper.users.byId(req.body.reporterID).then(
+                user => {
+                    if (!user)
+                        res.status(400).json({message: 'Reporter does not exist'});
+                }
+            );
+
+            let report = {
+                issueID: req.body.issueID,
+                reporterID: req.body.reporterID,
+                reportedID: req.body.reportedID,
+                reason: req.body.reason,
+            };
+
+            return dbHelper.reports.create(report);
+        },
+    )
+    .then(() => {
+        res.sendStatus(201);
+    }).catch(err => {
+        next(err);
+    });
 });
 
 module.exports = app;

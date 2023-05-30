@@ -49,7 +49,7 @@ app.patch('/:user_id', checkSchema(updateUserSchema), (req, res, next) => {
 
         dbHelper.users.update(req.params.user_id, user).then(
             () => {
-                res.send();
+                res.sendStatus(204);
             },
             err => {
                 next(err);

@@ -67,7 +67,7 @@ module.exports.users = {
 
 module.exports.reports = {
     all: () => all('select * from Report'),
-    byIssueId: id => get(`select * from Report where issueID = "${id}"`),
+    byIssueId: id => all(`select * from Report where issueID = "${id}"`),
     byReporterId: id => all(`select * from Report where reporterID = "${id}"`),
     byReportedId: id => all(`select * from Report where reportedID = "${id}"`),
     create: report => run(`insert into Report (issueID, reporterID, reportedID, reason) values ("${report.issueID}", "${report.reporterID}", "${report.reportedID}", "${report.reason}")`),
