@@ -1,7 +1,7 @@
 
 
 let express = require('express');
-let dbHelper = require('../../dbHelper.js');
+let dbHelper = require('../../data/dbHelper.js');
 let app = express.Router();
 
 const {checkSchema, validationResult} = require('express-validator');

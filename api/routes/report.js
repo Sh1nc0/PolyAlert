@@ -1,7 +1,7 @@
 
 
 let express = require('express');
-let dbHelper = require('../../dbHelper.js');
+let dbHelper = require('../../data/dbHelper.js');
 let app = express.Router();
 
 const {checkSchema, validationResult} = require('express-validator');
@@ -59,7 +59,7 @@ app.post('/', checkSchema(createReportSchema), (req, res, next) => {
                 user => {
                     if (!user)
                         res.status(400).json({message: 'Reporter does not exist'});
-                }
+                },
             );
 
             let report = {
@@ -72,11 +72,11 @@ app.post('/', checkSchema(createReportSchema), (req, res, next) => {
             return dbHelper.reports.create(report);
         },
     )
-    .then(() => {
-        res.sendStatus(201);
-    }).catch(err => {
-        next(err);
-    });
+        .then(() => {
+            res.sendStatus(201);
+        }).catch(err => {
+            next(err);
+        });
 });
 
 module.exports = app;
