@@ -1,4 +1,4 @@
-let dbHelper = require('./dbHelper.js');
+let dbHelper = require('./data/dbHelper.js');
 
 const app = require('./app');
 const server = require('http').createServer(app);
