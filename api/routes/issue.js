@@ -103,6 +103,21 @@ app.post('/:issue_id/close', (req, res, next) => {
     });
 });
 
+app.delete('/:issue_id', (req, res, next) => {
+    dbHelper.issues.byId(req.params.issue_id).then(
+        issue => {
+            if (!issue)
+                return res.status(400).json({msg: 'Issue does not exist'});
+
+            return dbHelper.issues.delete(req.params.issue_id);
+        },
+    ).then(() => {
+        res.sendStatus(204);
+    }).catch(err => {
+        next(err);
+    });
+});
+
 app.get('/:issue_id/messages', (req, res, next) => {
     dbHelper.issues.byId(req.params.issue_id).then(
         issue => {
@@ -147,7 +162,5 @@ app.post('/:issue_id/messages', checkSchema(createMessageSchema), (req, res, nex
         next(err);
     });
 });
-
-
 
 module.exports = app;

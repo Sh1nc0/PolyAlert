@@ -149,4 +149,16 @@ describe('Issue', () => {
             expect(res.statusCode).toEqual(400);
         });
     });
+
+    describe('DELETE /api/issues/:issue_id', () => {
+        it('should delete an issue', async () => {
+            const res = await request(app).delete('/api/issues/3');
+            expect(res.statusCode).toEqual(204);
+        });
+
+        it('should return an error issue does not exist', async () => {
+            const res = await request(app).delete('/api/issues/10000');
+            expect(res.statusCode).toEqual(400);
+        });
+    });
 });

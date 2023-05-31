@@ -5,8 +5,10 @@ export async function preload(context) {
 
     response.json().then(data => {
         data.forEach(issue => {
-            problemes.push({id: issue.id, title: issue.title, status: issue.technicianID ? 'Pris en charge' : 'En cours'});
+            if (!issue.closedAt)
+                problemes.push({id: issue.id, created: issue.created, title: issue.title, status: issue.technicianID ? 'Pris en charge' : 'En cours'});
         });
+        problemes.sort((a, b) => new Date(b.created) - new Date(a.created));
     });
 
     return {problemes: problemes};

@@ -29,17 +29,16 @@ export async function postload(context) {
                 // Si tout s'est bien passé
                 result = await result.json();
                 // Et que l'authentification s'est bien passée
-                console.log(result);
                 if (result.success) {
                     // on passe à la page d'administration
                     context.logged = true;
-                    setCookie('user', JSON.stringify(result.user));
+                    setCookie('user', JSON.stringify(result.user), 1);
                     context.user = result.user;
                     context.button = {title: result.user.role === 'Technicien' ? 'Gérer signalements' : 'Mes signalements', path: result.user.role === 'Technicien' ? '/manage-issues' : '/my-issues'};
                     window.location.href = '/';
                 }
                 else
-                    window.location.href = '/login';
+                    alert('Mauvais identifiants');
             }
         }
         catch (e) {

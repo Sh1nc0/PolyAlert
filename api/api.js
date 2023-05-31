@@ -5,6 +5,7 @@ let user = require('./routes/user');
 let report = require('./routes/report');
 let issue = require('./routes/issue');
 let login = require('./routes/login');
+let logout = require('./routes/logout');
 
 var bodyParser = require('body-parser');
 
@@ -21,6 +22,7 @@ module.exports = function (passport) {
     app.use('/reports', report);
     app.use('/issues', issue);
     app.use('/login', login(passport));
+    app.use('/logout', logout);
 
     return app;
 };
