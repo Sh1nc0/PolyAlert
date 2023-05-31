@@ -38,7 +38,7 @@ export async function postload(context) {
                     window.location.href = '/';
                 }
                 else
-                    alert('Mauvais identifiants')
+                    alert('Mauvais identifiants');
             }
         }
         catch (e) {
