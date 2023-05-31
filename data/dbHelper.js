@@ -83,6 +83,7 @@ module.exports.issues = {
     create: issue => run(`insert into Issue (userID, title, description, location, type, criticity, anonymous) values ("${issue.userID}", "${issue.title}", "${issue.description}", "${issue.location}", "${issue.type}", "${issue.criticity}", "${issue.anonymous}")`),
     handle: (id, technicianID) => run(`update Issue set technicianID = "${technicianID}" where id = "${id}"`),
     close: id => run(`update Issue set closedAT = datetime('now') where id = "${id}"`),
+    delete: id => run(`delete from Issue where id = "${id}"`),
 };
 
 module.exports.messages = {

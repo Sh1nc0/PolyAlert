@@ -99,8 +99,8 @@ export async function postload(context) {
     }
 
     async function deleteIssue(){
-        await fetch(`/api/issues/${context.issue.id}/close`, {
-            method: 'POST',
+        await fetch(`/api/issues/${context.issue.id}`, {
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
             },
