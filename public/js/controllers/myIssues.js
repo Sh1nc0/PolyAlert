@@ -7,11 +7,16 @@ export async function preload(context) {
         return;
     }
     let issues = await response.json();
-
+    issues = issues.filter(issue => !issue.closedAt);
+    issues.sort((a, b) => {
+        return new Date(b.created) - new Date(a.created);
+    });
     issues.forEach(issue => {
         issue.created = new Date(issue.created).toLocaleString();
         issue.status = issue.technicianID ? 'Pris en charge' : 'En cours';
     });
+
+    console.log(issues);
 
     return {issues: issues};
 }
