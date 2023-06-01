@@ -41,6 +41,7 @@ Pour ce faire nous avons récupérer le travail du 1er groupe (3B) qui à realis
 
 ```bash
 $ npm install
+$ npm run createDB
 $ npm run start
 ```
 
