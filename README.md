@@ -45,6 +45,21 @@ $ npm run createDB
 $ npm run start
 ```
 
+OU via docker:
+
+Il faut installer docker et docker-compose.
+
+Pour lancer et build l'image docker:
+```bash
+$ docker build -t poly-alert .
+$ docker run -p 8080:8080 poly-alert
+```
+
+Pour lancer sans build l'image docker:
+```bash
+$ docker-compose up
+```
+
 Ensuite rendez vous sur `http://localhost:8080`. Vous pouvez vous conncter avec les identifiants suivants:
 - Technicien:
   - email: `admin`
